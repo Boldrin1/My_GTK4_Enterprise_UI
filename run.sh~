@@ -1,7 +1,0 @@
-#!/bin/bash
-echo "Compilando..."
-meson compile -C build
-
-echo "Executando..."
-./build/meuapp.exe
-
