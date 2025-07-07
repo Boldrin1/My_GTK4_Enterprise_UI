@@ -4,24 +4,36 @@ static void text(GtkWidget *widget,gpointer data){
 	g_print("Hello World");
 }
 
+static void text2(GtkWidget *widget,gpointer dara){
+	g_print("Ola Mundo");
+}	
+
 static void on_activate(GtkApplication *app, gpointer user_data) {
     GtkWidget *window = gtk_application_window_new(app);
-    gtk_window_set_title(GTK_WINDOW(window), "Minha Janela GTK4");
+    gtk_window_set_title(GTK_WINDOW(window), "ContabilidadeOne");
     gtk_window_maximize(GTK_WINDOW(window));
-    gtk_window_present(GTK_WINDOW(window));
-
 
     GtkWidget *button;
-    GtkWidget *box;
+    GtkWidget *grid;
 
-    button = gtk_button_new_with_label("Click");
+
+    grid = gtk_grid_new();
+    gtk_window_set_child(GTK_WINDOW(window),grid);
+
+
+    button = gtk_button_new_with_label("Button 1");
     g_signal_connect(button,"clicked",G_CALLBACK(text),NULL);
-    
-    box = gtk_box_new(GTK_ORIENTATION_VERTICAL,0);
-    gtk_widget_set_halign(box,GTK_ALIGN_CENTER);
+    gtk_grid_attach(GTK_GRID(grid),button,0,0,1,1);
 
-    gtk_box_append(GTK_BOX(box),button);
-    gtk_window_set_child(GTK_WINDOW(window), box);
+    button = gtk_button_new_with_label("Button 2");
+    g_signal_connect(button,"clicked",G_CALLBACK(text2),NULL;
+    gtk_grid_attach(GTK_GRID(grid),button,0,1,1,1);
+
+    button = gtk_button_new_with_label("Quit");
+    g_signal_connect_swapped(button,"clicked",G_CALLBACK(gtk_window_destroy),window);
+    gtk_grid_attach(GTK_GRID(grid),button,1,0,1,2);
+
+
     gtk_window_present(GTK_WINDOW(window));
 
 }
