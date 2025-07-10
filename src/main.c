@@ -1,41 +1,45 @@
 #include <gtk/gtk.h>
 
-static void text(GtkWidget *widget,gpointer data){
-	g_print("Hello World");
+static void adicionar(GtkWidget *widget,gpointer data){
+	int i;
+	i = i+1;
+	int *ptr;
+	ptr = &i;
 }
 
-static void text2(GtkWidget *widget,gpointer data){
-	g_print("Ola Mundo");
-}	
+static void remover(GtkWidget *widget,gpointer data){
+	int x;
+	x= x+1;
+	int *ptr2;
+	ptr2 = &x;
+}
+
 
 static void on_activate(GtkApplication *app, gpointer user_data) {
-    GtkWidget *window = gtk_application_window_new(app);
-    gtk_window_set_title(GTK_WINDOW(window), "ContabilidadeOne");
-    gtk_window_maximize(GTK_WINDOW(window));
-
+    GtkWidget *window;
     GtkWidget *button;
+    GtkWidget *label;
     GtkWidget *grid;
 
+    window = gtk_application_window_new(app);
+    gtk_window_set_title(GTK_WINDOW(window),"ContabilidadeOne");
+    gtk_window_maximize(GTK_WINDOW(window));
 
-    grid = gtk_grid_new();
+    grid = gyk_grid_new();
     gtk_window_set_child(GTK_WINDOW(window),grid);
 
 
-    button = gtk_button_new_with_label("Button 1");
-    g_signal_connect(button,"clicked",G_CALLBACK(text),NULL);
+    button = gtk_button_new_with_label("Adicionar");
+    g_signal_connect(button,"activate",G_CALLBACK(adicionar),NULL);
     gtk_grid_attach(GTK_GRID(grid),button,0,0,1,1);
 
-    button = gtk_button_new_with_label("Button 2");
-    g_signal_connect(button,"clicked",G_CALLBACK(text2),NULL);
-    gtk_grid_attach(GTK_GRID(grid),button,0,1,1,1);
-
-    button = gtk_button_new_with_label("Quit");
-    g_signal_connect_swapped(button,"clicked",G_CALLBACK(gtk_window_destroy),window);
-    gtk_grid_attach(GTK_GRID(grid),button,1,0,1,2);
+    
+    button = gtk_button_new_with_label("Excluir");
+    g_signal_connect(button,"activate",G_CALLBACK(button,"activate",G_CALLBACK(remover));
+    gtk_grid_attach(GTK_GRID(grid),button,0,0,1,1);
 
 
     gtk_window_present(GTK_WINDOW(window));
-
 }
 
 
